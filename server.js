@@ -8,7 +8,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
  
 // Find your account sid and auth token in your Twilio account Console.
-var client = new twilio('AC603646de7b2de6297372237de958cc48', 'e4ba5dacf93b107965edb493aef98fa7');
+var client = new twilio('XXX', 'XXX');
 
 io.sockets.on('connection', function(socket) {
   //console.log("Socket connected");
