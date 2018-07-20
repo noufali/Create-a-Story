@@ -14,4 +14,4 @@ Node.js, Twilio API, jQery, HTML/CSS
 <img width="1440" alt="screen shot 2018-01-31 at 9 00 02 pm" src="https://user-images.githubusercontent.com/22034616/35664957-14c5eb16-06f2-11e8-925c-402e27de8029.png">
 
 ### Text Received
-![img_9443](https://user-images.githubusercontent.com/22034616/35665048-6da5e2d6-06f2-11e8-8628-1cca0169467d.PNG)
+<img width="500" alt="screen shot 2018-01-31 at 9 00 02 pm" src="https://user-images.githubusercontent.com/22034616/35665048-6da5e2d6-06f2-11e8-8628-1cca0169467d.PNG">
