@@ -1,0 +1,81 @@
+body {
+	font-family: "Roboto";
+	font-size: 20px;
+	background-color: #F68CFF;
+}
+
+#container {
+	width:650px;
+	height: 1000px;
+	border-style: solid;
+	border-color: black;
+	border-radius: 2px;
+	overflow: hidden;
+	float: left;
+}
+
+#container2 {
+	width:700px;
+	height: 500px;
+	padding: 10px;
+	overflow: hidden;
+	border-style: solid;
+	border-color: black;
+	border-radius: 2px;
+	float: left;
+	margin-left: 20px;
+}
+
+#before {
+	width: 500px;
+	padding: 10px;
+}
+
+#enter{
+	display: inline-block;
+	padding: 0px;
+	height: 40px;
+	width: 40px;
+	background: #999999;
+	color: white;
+	font-weight: 400;
+	font-size: 20px;
+	box-shadow: 0 5px 0px darken($button-bg-color,0%);
+	border-bottom: 2px solid darken($button-bg-color,3%);
+}
+
+#send {
+	display: inline-block;
+	padding: 0px;
+	height: 40px;
+	width: 200px;
+	background: #999999;
+	color: white;
+	font-weight: 400;
+	font-size: 20px;
+	box-shadow: 0 5px 0px darken($button-bg-color,0%);
+	border-bottom: 2px solid darken($button-bg-color,3%);
+	position: absolute;
+	margin-top: 370px;
+	margin-left: 500px;
+}
+
+hr {
+	color: black;
+	display: block;
+	border-style: inset;
+	border-width: 2px;
+}
+
+#number {
+	position: absolute;
+	margin-top: 370px;
+	margin-left: 290px;
+	height: 40px;
+	padding: 12px 40px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	display: inline-block;
+	width:200px;
+}
