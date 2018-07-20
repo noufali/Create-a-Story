@@ -1,93 +1,9 @@
+<!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Create-a-story </title>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<style type="text/css">
-	body {
-		font-family: "Roboto";
-		font-size: 20px;
-		background-color: #F68CFF;
-	}
-
-	#container {
-		
-		width:650px;
-		height: 1000px;
-		border-style: solid;
-		border-color: black;
-		border-radius: 2px;
-		overflow: hidden;
-		float: left;
-	}
-
-	#container2 {
-
-		width:700px;
-		height: 500px;
-		padding: 10px;
-		overflow: hidden;
-	    border-style: solid;
-		border-color: black;
-		border-radius: 2px;
-		float: left;
-		margin-left: 20px;
-	}
-
-	#before {
-		width: 500px;
-		padding: 10px;
-	}
-
-	#enter{
-		display: inline-block;
-		padding: 0px;
-		height: 40px;
-		width: 40px;
-		background: #999999;
-		color: white;
-		font-weight: 400;
-		font-size: 20px;
-		box-shadow: 0 5px 0px darken($button-bg-color,0%);
-		border-bottom: 2px solid darken($button-bg-color,3%);
-	}
-	#send {
-		display: inline-block;
-		padding: 0px;
-		height: 40px;
-		width: 200px;
-		background: #999999;
-		color: white;
-		font-weight: 400;
-		font-size: 20px;
-		box-shadow: 0 5px 0px darken($button-bg-color,0%);
-		border-bottom: 2px solid darken($button-bg-color,3%);
-		position: absolute;
-		margin-top: 370px;
-		margin-left: 500px;
-	}
-
-	hr {
-		color: black;
-		display: block;
-		border-style: inset;
-		border-width: 2px;
-	}
-
-	#number {
-		position: absolute;
-		margin-top: 370px;
-		margin-left: 290px;
-		height: 40px;
-
-	    padding: 12px 40px;
-	    display: inline-block;
-	    border: 1px solid #ccc;
-	    box-sizing: border-box;
-	    display: inline-block;
-	    width:200px; 
-	}
-
-</style>
-
+<link rel="stylesheet" href="css/style.css">
 <body>
 	<div id = "container">
 		<div id = "before">
@@ -105,7 +21,7 @@
 			<h1 style="margin-top: 5px;margin-left: 20px"> Create your Story </h1>
 			<input id = "number" type = "text" value = "Insert Phone Number"> </input>
 			<input id = "send" type = "submit" value = "Send"> </input>
-			
+
 			<hr style="margin: 20px;margin-top: 50px">
 			<hr style="margin: 20px;margin-top: 50px">
 			<hr style="margin: 20px;margin-top: 50px">
@@ -120,113 +36,5 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.7.3.js"></script>
-
-<script type="text/javascript">
-
-	$(function() {
-		var socket = io.connect("http://localhost:8000");
-		var count = 0; 
-		var divs = [];
-		var newSentence = [];
-		var xPositions = [];
-		var sentence = $('p').text() + "";
-		var regex = /\b\w+\b/g;
-		var not = /\W+/g;
-		var final = sentence.match(regex);
-		//console.log(final);
-
-		$('#send').click(function() {
-			var from = $('#number').val();
-			socket.emit('message', from );
-			console.log("message sent: " + from);
-		});
-
-		socket.on("nouf", function(msg) {
-	    	console.log("Nouf socket message received: " + msg);
-	    });
-
-		$('#enter').click(function() {
-			console.log("it worked!");
-			//$('p').text(sentence.replace(regex, "    "));
-			$('p').text(" ");
-
-			for (var i = 0; i<final.length; i++) {
-				var left = Math.floor(Math.random() * 600);
-				var top = 50 + Math.floor(Math.random() * 900);
-				var div = document.createElement('div');
-				div.id = count + ""; 
-				div.style.position = 'absolute';
-				div.style.top = top + "px"; 
-				div.style.left = left + "px";
-				div.style.backgroundcolor = "white";
-				divs.push(div);
-				document.body.appendChild(div);
-				div.append(final[i]);
-				count = count + 1; 
-			}
-
-			for (var j=0;j<divs.length;j++) {
-			    	$("#" + j).draggable({
-				      stop: function() {
-				        positions();
-				      }
-				    });
-			    	$("#" + j).css("background-color", "white");
-			};
-	});
-
-		function Word (d, x, t) {
-			this.d = d;
-			this.x = x; 
-			this.t = t;
-		}
-
-		function positions() {
-			for (var z=0;z<divs.length;z++) {
-				var xPos = $( "#" + z ).css("left");
-				var word = $( "#" + z ).text();
-				var t = $( "#" + z ).text();
-		
-				if (parseInt(xPos) > 700) {
-					//console.log(xPos);
-					$( "#" + z ).css("background-color", "red");
-					newSentence.push(word);
-
-					newSentence = newSentence.filter(function(item,index,inputArray) {
-			          return inputArray.indexOf(item) == index;
-			     	});
-				};
-				//console.log(newSentence);
-				var yes = newSentence.join(' ');
-				console.log(yes);
-				socket.emit('text', yes);
-			};
-
-
-		};
-
-
-
-});
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="js/story.js"></script>
 </html>
